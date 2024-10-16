@@ -8,7 +8,7 @@ const ContactSection = () => {
             <div className="container mx-auto px-4">
                 <h2 className="text-4xl font-bold mb-12 text-center text-teal-300">Get in Touch</h2>
                 <div className="max-w-md mx-auto">
-                    <form className="space-y-4">
+                    <form className="space-y-4 mb-8">
                         <input
                             type="text"
                             placeholder="Name"
@@ -33,6 +33,16 @@ const ContactSection = () => {
                             Send Message
                         </motion.button>
                     </form>
+                    <motion.a
+                        href="https://fantastical.app/joda"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full bg-purple-500 text-white py-2 rounded text-center hover:bg-purple-600 transition-colors"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        Schedule a Meeting
+                    </motion.a>
                 </div>
                 <div className="mt-12 flex justify-center space-x-6">
                     <motion.a

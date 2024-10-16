@@ -57,23 +57,22 @@ export const projectsData = [
 
 export const experiencesData = [
     {
-        title: "Senior Full-Stack Developer",
-        company: "TechCorp Inc.",
-        period: "2020 - Present",
+        title: "Software Developer (Intern)",
+        company: "National Retail Solutions",
+        period: "June 2024 - Present",
         achievements: [
-            "Led development of mission-critical applications",
-            "Mentored junior developers and improved team productivity by 30%",
-            "Implemented CI/CD pipeline, reducing deployment time by 50%"
+            "Developed a tool to streamline the company's ad placement process",
+            "Created Splunk dashboard for security monitoring",
+            "Developed JS algorithm for Puerto Rico tax compliance"
         ]
     },
     {
-        title: "Cybersecurity Specialist",
-        company: "SecureNet Solutions",
-        period: "2018 - 2020",
+        title: "Software Developer (Intern)",
+        company: "Skybotic",
+        period: "July 2023",
         achievements: [
-            "Conducted penetration testing for high-profile clients",
-            "Developed and implemented security policies and procedures",
-            "Reduced security incidents by 40% through proactive measures"
+            "Explored AI pathfinding and obstacle avoidance for medical drones",
+            "Integrated PX4 Autopilot",
         ]
     }
 ];

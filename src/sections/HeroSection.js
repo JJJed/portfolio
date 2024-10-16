@@ -23,7 +23,7 @@ const HeroSection = () => {
                     Full-Stack Developer & Cybersecurity Specialist
                 </motion.p>
                 <motion.div
-                    className="flex justify-center space-x-4"
+                    className="flex flex-wrap justify-center space-x-4 space-y-4 sm:space-y-0"
                     initial={{ y: 50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.4 }}
@@ -34,6 +34,14 @@ const HeroSection = () => {
                     <button onClick={() => smoothScroll('projects')} className="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors">
                         View Projects
                     </button>
+                    <a
+                        href="https://fantastical.app/joda"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-purple-500 text-white px-6 py-2 rounded-full hover:bg-purple-600 transition-colors"
+                    >
+                        Schedule a Meeting
+                    </a>
                 </motion.div>
             </div>
         </section>
