@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 
-import splunk_dashboard from '../assets/splunk_dashboard.png';
-import joda_music from '../assets/joda_music.png';
-import hearo from '../assets/hearo.png';
-import brli from '../assets/brli.png';
-import beatstarrpc from '../assets/beatstarrpc.png';
-import ccbal from '../assets/ccbal.png';
-import ftcautons from '../assets/ftcautons.png';
+import splunk_dashboard from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/splunk_dashboard.png';
+import joda_music from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/joda_music.png';
+import hearo from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/hearo.png';
+import brli from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/brli.png';
+import beatstarrpc from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/beatstarrpc.png';
+import ccbal from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/ccbal.png';
+import ftcautons from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/ftcautons.png';
 
 
 const images = {

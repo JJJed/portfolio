@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, X } from 'lucide-react';
-import logo from '../assets/logo192.png';
+import logo from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/logo192.png';
 
 const Navbar = ({ sectionRefs }) => {
     const [isOpen, setIsOpen] = useState(false);
