@@ -62,3 +62,5 @@ jobs:
       run: |
         zip -r build.zip build/
         curl -u $DA_USERNAME:$DA_PASSWORD -T build.zip "$DA_URL/CMD_FILE_MANAGER?action=upload&path=/domains/jedd.dev/public_html&json=yes"
+
+        curl -u $DA_USERNAME:$DA_PASSWORD "$DA_URL/CMD_FILE_MANAGER?action=extract&path=/domains/jedd.dev/public_html&file=build.zip&json=yes"
