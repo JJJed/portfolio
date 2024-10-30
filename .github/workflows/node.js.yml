@@ -1,0 +1,64 @@
+name: Node.js CI and Deploy
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        # Node.js versions to test
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build the React app
+      run: npm run build --if-present
+    
+    - name: Run tests
+      run: npm test
+
+  # Separate job for deployment, triggered only if tests pass
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'  # Deploy only on pushes to master
+    environment: Production
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18.x'  # Set to a single version for deployment
+        
+    - name: Install dependencies and build
+      run: |
+        npm ci
+        npm run build
+
+    - name: Deploy to DirectAdmin
+      env:
+        DA_USERNAME: ${{ secrets.DA_USERNAME }}
+        DA_PASSWORD: ${{ secrets.DA_PASSWORD }}
+        DA_URL: ${{ secrets.DA_URL }}  # e.g., https://your-domain.com:2222
+      run: |
+        zip -r build.zip build/
+        curl -u $DA_USERNAME:$DA_PASSWORD -T build.zip "$DA_URL/CMD_FILE_MANAGER?action=upload&path=/domains/jedd.dev/public_html&json=yes"
