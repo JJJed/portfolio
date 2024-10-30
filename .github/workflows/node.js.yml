@@ -49,13 +49,32 @@ jobs:
         DA_PASSWORD: ${{ secrets.DA_PASSWORD }}
         DA_URL: ${{ secrets.DA_URL }}
       run: |
+        # Step 1: Zip the build folder
         zip -r build.zip build/
         
-        # Clear existing files (excluding directories)
-        curl -u "$DA_USERNAME:$DA_PASSWORD" "$DA_URL/CMD_FILE_MANAGER?action=delete&path=/domains/jedd.dev/public_html/*&select=files&json=yes"
+        # Step 2: Clear existing files (excluding directories)
+        curl -u "$DA_USERNAME:$DA_PASSWORD" -X POST "$DA_URL/CMD_API_FILE_MANAGER" \
+        -d "action=delete" \
+        -d "path=/domains/jedd.dev/public_html/" \
+        -d "select=files" \
+        -d "json=yes"
         
-        # Upload build.zip
-        curl -u "$DA_USERNAME:$DA_PASSWORD" -T build.zip "$DA_URL/CMD_FILE_MANAGER?action=upload&path=/domains/jedd.dev/public_html&json=yes"
+        # Step 3: Upload build.zip to public_html
+        curl -u "$DA_USERNAME:$DA_PASSWORD" -T build.zip "$DA_URL/CMD_API_FILE_MANAGER" \
+        -d "action=upload" \
+        -d "path=/domains/jedd.dev/public_html" \
+        -d "json=yes"
         
-        # Extract the contents
-        curl -u "$DA_USERNAME:$DA_PASSWORD" "$DA_URL/CMD_FILE_MANAGER?action=extract&path=/domains/jedd.dev/public_html&file=build.zip&overwrite=yes&json=yes"
+        # Step 4: Extract build.zip in public_html
+        curl -u "$DA_USERNAME:$DA_PASSWORD" "$DA_URL/CMD_API_FILE_MANAGER" \
+        -d "action=extract" \
+        -d "path=/domains/jedd.dev/public_html" \
+        -d "file=build.zip" \
+        -d "overwrite=yes" \
+        -d "json=yes"
+        
+        # Step 5: Cleanup - remove the uploaded zip file
+        curl -u "$DA_USERNAME:$DA_PASSWORD" -X POST "$DA_URL/CMD_API_FILE_MANAGER" \
+        -d "action=delete" \
+        -d "path=/domains/jedd.dev/public_html/build.zip" \
+        -d "json=yes"
