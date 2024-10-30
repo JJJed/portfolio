@@ -27,8 +27,7 @@ jobs:
 
       - name: Build the React app
         run: |
-          # The homepage in package.json should be set to https://jjjed.github.io/portfolio
-          CI=false npm run build
+          CI=false PUBLIC_URL=https://jjjed.github.io/portfolio npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

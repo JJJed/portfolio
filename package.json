@@ -1,8 +1,9 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
-  "homepage": "https://jjjed.github.io/portfolio",
   "private": true,
+  "homepage": "https://jjjed.github.io",
+  "proxy": "https://jjjed.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -45,6 +46,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "gh-pages": "^6.2.0",
+    "http-proxy-middleware": "^3.0.3",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13"
   }
