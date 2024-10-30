@@ -2,13 +2,13 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, X } from 'lucide-react';
 
-const SkillCard = ({ skill, icon: Icon, projects, yearsOfExperience, proficiency, isExpanded, onExpand, className }) => {
+const SkillCard = ({ skill, icon: Icon, projects, yearsOfExperience, proficiency, keySkills, toolsAndTechnologies, featuredProject, isExpanded, onClick, className }) => {
     return (
         <motion.div
-            className={`bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer relative z-20 ${isExpanded ? 'md:col-span-2' : ''} ${className}`}
+            className={`bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer relative z-20 ${isExpanded ? 'col-span-full' : ''} ${className}`}
             layout
             transition={{ duration: 0.5, type: "spring" }}
-            onClick={onExpand}
+            onClick={onClick}
         >
             <div className="p-6">
                 <div className="flex justify-between items-center">
@@ -41,24 +41,30 @@ const SkillCard = ({ skill, icon: Icon, projects, yearsOfExperience, proficiency
                                         <li key={index}>{project}</li>
                                     ))}
                                 </ul>
-                                {/* Add more detailed content here */}
                                 <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <h4 className="text-lg font-semibold mb-2">Key Skills</h4>
-                                        {/* Add a list of key skills */}
+                                        <ul className="list-disc list-inside text-gray-400">
+                                            {keySkills.map((skill, index) => (
+                                                <li key={index}>{skill}</li>
+                                            ))}
+                                        </ul>
                                     </div>
                                     <div>
                                         <h4 className="text-lg font-semibold mb-2">Tools & Technologies</h4>
-                                        {/* Add a list of tools and technologies */}
+                                        <ul className="list-disc list-inside text-gray-400">
+                                            {toolsAndTechnologies.map((tool, index) => (
+                                                <li key={index}>{tool}</li>
+                                            ))}
+                                        </ul>
                                     </div>
                                 </div>
                                 <div className="mt-4">
                                     <h4 className="text-lg font-semibold mb-2">Featured Project</h4>
-                                    {/* Add a featured project with image and description */}
                                     <div className="bg-gray-700 p-4 rounded-lg">
-                                        <img src="/placeholder-project-image.jpg" alt="Featured Project" className="w-full h-48 object-cover rounded-lg mb-2" />
-                                        <h5 className="text-md font-semibold">Project Name</h5>
-                                        <p className="text-sm text-gray-400">Brief project description goes here...</p>
+                                        <img src={featuredProject.image} alt={featuredProject.name} className="w-full h-48 object-cover rounded-lg mb-2" />
+                                        <h5 className="text-md font-semibold">{featuredProject.name}</h5>
+                                        <p className="text-sm text-gray-400">{featuredProject.description}</p>
                                     </div>
                                 </div>
                             </div>

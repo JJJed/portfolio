@@ -1,31 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, X } from 'lucide-react';
-import { smoothScroll } from '../utils/smoothScroll';
+import logo from '../assets/logo192.png';
 
-const Navbar = () => {
+const Navbar = ({ sectionRefs }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [navHeight, setNavHeight] = useState(0);
 
-    const handleNavClick = (targetId) => {
-        smoothScroll(targetId);
-        setIsOpen(false);
-    };
+    useEffect(() => {
+        const updateNavHeight = () => {
+            const navbar = document.querySelector('nav');
+            if (navbar) {
+                setNavHeight(navbar.offsetHeight);
+            }
+        };
+
+        updateNavHeight();
+        window.addEventListener('resize', updateNavHeight);
+        return () => window.removeEventListener('resize', updateNavHeight);
+    }, []);
+
+    const handleNavClick = useCallback((targetId) => {
+        const targetRef = sectionRefs[targetId];
+        if (targetId == 'home') {
+            const y = 0;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+            setIsOpen(false);
+        }
+        else if (targetRef && targetRef.current) {
+            const yOffset = navHeight + 20; // navbar height plus 20px extra space
+            const element = targetRef.current;
+            const y = element.getBoundingClientRect().top + window.pageYOffset - yOffset;
+
+            window.scrollTo({ top: y, behavior: 'smooth' });
+            setIsOpen(false);
+        }
+    }, [sectionRefs, navHeight]);
+
+    const navItems = ['About', 'Skills', 'Projects', 'Experience', 'Terminal', 'Contact'];
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-70 backdrop-filter backdrop-blur-lg">
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-center py-4">
-                    <a onClick={() => handleNavClick('home')} className="text-2xl font-bold text-teal-300">JD</a>
+                    <button onClick={() => handleNavClick('home')} className="flex items-center">
+                        <img src={logo} alt="JD Logo" className="h-10 w-10" />
+                    </button>
                     <div className="hidden md:flex space-x-6">
-                        {['About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
-                            <a
+                        {navItems.map((item) => (
+                            <button
                                 key={item}
-                                // href={`#${item.toLowerCase()}`}
                                 onClick={() => handleNavClick(item.toLowerCase())}
                                 className="text-gray-300 hover:text-teal-300 transition-colors text-sm uppercase tracking-wider"
                             >
                                 {item}
-                            </a>
+                            </button>
                         ))}
                     </div>
                     <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white">
@@ -42,15 +71,14 @@ const Navbar = () => {
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
                     >
-                        {['About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
-                            <a
+                        {navItems.map((item) => (
+                            <button
                                 key={item}
-                                href={`#${item.toLowerCase()}`}
                                 onClick={() => handleNavClick(item.toLowerCase())}
-                                className="block py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-teal-300 transition-colors"
+                                className="block w-full text-left py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-teal-300 transition-colors"
                             >
                                 {item}
-                            </a>
+                            </button>
                         ))}
                     </motion.div>
                 )}
