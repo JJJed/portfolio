@@ -19,7 +19,9 @@
     "build": "react-scripts build",
     "test_DISABLED": "react-scripts test",
     "test": "CI=false react-scripts test --passWithNoTests",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
