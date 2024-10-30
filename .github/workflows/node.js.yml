@@ -50,5 +50,12 @@ jobs:
         DA_URL: ${{ secrets.DA_URL }}
       run: |
         zip -r build.zip build/
+        
+        # Delete existing directory content first
+        curl -u $DA_USERNAME:$DA_PASSWORD "$DA_URL/CMD_FILE_MANAGER?action=delete&path=/domains/jedd.dev/public_html/*&json=yes"
+        
+        # Upload zip
         curl -u $DA_USERNAME:$DA_PASSWORD -T build.zip "$DA_URL/CMD_FILE_MANAGER?action=upload&path=/domains/jedd.dev/public_html&json=yes"
-        curl -u $DA_USERNAME:$DA_PASSWORD "$DA_URL/CMD_FILE_MANAGER?action=extract&path=/domains/jedd.dev/public_html&file=build.zip&json=yes"
+        
+        # Extract with overwrite
+        curl -u $DA_USERNAME:$DA_PASSWORD "$DA_URL/CMD_FILE_MANAGER?action=extract&path=/domains/jedd.dev/public_html&file=build.zip&overwrite=yes&json=yes"
