@@ -9,8 +9,27 @@ const Terminal = ({ experiencesData, skillsData, projectsData }) => {
     const [historyIndex, setHistoryIndex] = useState(-1);
     const [tabOptions, setTabOptions] = useState([]);
     const [showTabCompletion, setShowTabCompletion] = useState(false);
+    const [isTerminalActive, setIsTerminalActive] = useState(false);
     const inputRef = useRef(null);
     const terminalRef = useRef(null);
+
+    // Remove the autoFocus from input and modify click handler
+    const handleTerminalClick = () => {
+        setIsTerminalActive(true);
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    };
+
+    // Initial welcome message without auto-focus
+    useEffect(() => {
+        setHistory([
+            { type: 'output', content: '=== Joshua Davis Terminal v1.0 ===' },
+            { type: 'output', content: 'Welcome! Type "help" for available commands.' },
+            { type: 'output', content: 'Press Tab for command completion.' },
+            { type: 'output', content: '' }
+        ]);
+    }, []);
 
     // Define all available commands and their tab completion options
     const commandList = [
@@ -745,7 +764,7 @@ const Terminal = ({ experiencesData, skillsData, projectsData }) => {
             <div
                 ref={terminalRef}
                 className="p-4 h-96 overflow-y-auto bg-gray-900"
-                onClick={() => inputRef.current?.focus()}
+                onClick={handleTerminalClick}
             >
                 {/* Command History */}
                 {history.map((entry, i) => (
@@ -777,19 +796,20 @@ const Terminal = ({ experiencesData, skillsData, projectsData }) => {
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
-                        onKeyDown={(e) => handleKeyDown(e)}
+                        onKeyDown={handleKeyDown}
                         className="flex-1 bg-transparent text-white outline-none border-none ml-1"
-                        autoFocus
                         spellCheck="false"
                     />
                 </form>
 
                 {/* Blinking Cursor */}
-                <motion.div
-                    className="inline-block w-2 h-4 bg-gray-400 ml-1"
-                    animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 0.8, repeat: Infinity }}
-                />
+                {isTerminalActive && (
+                    <motion.div
+                        className="inline-block w-2 h-4 bg-gray-400 ml-1"
+                        animate={{ opacity: [1, 0] }}
+                        transition={{ duration: 0.8, repeat: Infinity }}
+                    />
+                )}
             </div>
         </div>
     );
