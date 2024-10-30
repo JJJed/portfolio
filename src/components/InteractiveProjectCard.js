@@ -2,23 +2,33 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
 
-import splunk_dashboard from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/splunk_dashboard.png';
-import joda_music from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/joda_music.png';
-import hearo from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/hearo.png';
-import brli from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/brli.png';
-import beatstarrpc from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/beatstarrpc.png';
-import ccbal from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/ccbal.png';
-import ftcautons from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/ftcautons.png';
+// import splunk_dashboard from '../assets/splunk_dashboard.png';
+// import joda_music from '../assets/joda_music.png';
+// import hearo from '../assets/hearo.png';
+// import brli from '../assets/brli.png';
+// import beatstarrpc from '../assets/beatstarrpc.png';
+// import ccbal from '../assets/ccbal.png';
+// import ftcautons from '../assets/ftcautons.png';
 
+
+// const images = {
+//     "Splunk Threat Dashboard": splunk_dashboard,
+//     "Joda Music": joda_music,
+//     "Hearo": hearo,
+//     "Immigrant Life": brli,
+//     "BeatstarRPC": beatstarrpc,
+//     "CCBal": ccbal,
+//     "Robotics Autonomous Path Viewer": ftcautons
+// };
 
 const images = {
-    "Splunk Threat Dashboard": splunk_dashboard,
-    "Joda Music": joda_music,
-    "Hearo": hearo,
-    "Immigrant Life": brli,
-    "BeatstarRPC": beatstarrpc,
-    "CCBal": ccbal,
-    "Robotics Autonomous Path Viewer": ftcautons
+    "Splunk Threat Dashboard": "https://cdn.jedd.dev/portfolio/src/assets/splunk_dashboard.png",
+    "Joda Music": "https://cdn.jedd.dev/portfolio/src/assets/joda_music.png",
+    "Hearo": "https://cdn.jedd.dev/portfolio/src/assets/hearo.png",
+    "Immigrant Life": "https://cdn.jedd.dev/portfolio/src/assets/brli.png",
+    "BeatstarRPC": "https://cdn.jedd.dev/portfolio/src/assets/beatstarrpc.png",
+    "CCBal": "https://cdn.jedd.dev/portfolio/src/assets/ccbal.png",
+    "Robotics Autonomous Path Viewer": "https://cdn.jedd.dev/portfolio/src/assets/ftcautons.png"
 };
 
 const InteractiveProjectCard = ({ project }) => {

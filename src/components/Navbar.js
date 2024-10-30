@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, X } from 'lucide-react';
-import logo from 'https://github.com/JJJed/portfolio/raw/refs/heads/master/src/assets/logo192.png';
 
 const Navbar = ({ sectionRefs }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +43,7 @@ const Navbar = ({ sectionRefs }) => {
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-center py-4">
                     <button onClick={() => handleNavClick('home')} className="flex items-center">
-                        <img src={logo} alt="JD Logo" className="h-10 w-10" />
+                        <img src="https://cdn.jedd.dev/portfolio/src/assets/logo192.png" alt="JD Logo" className="h-10 w-10" />
                     </button>
                     <div className="hidden md:flex space-x-6">
                         {navItems.map((item) => (
