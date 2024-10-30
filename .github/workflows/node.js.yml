@@ -51,11 +51,11 @@ jobs:
       run: |
         zip -r build.zip build/
         
-        # Clear directory first
-        curl -u $DA_USERNAME:$DA_PASSWORD "$DA_URL/CMD_FILE_MANAGER?action=delete&path=/public_html/*&json=yes"
+        # Clear existing files (excluding directories)
+        curl -u "$DA_USERNAME:$DA_PASSWORD" "$DA_URL/CMD_FILE_MANAGER?action=delete&path=/domains/jedd.dev/public_html/*&select=files&json=yes"
         
-        # Upload build.zip to public_html
-        curl -u $DA_USERNAME:$DA_PASSWORD -T build.zip "$DA_URL/CMD_FILE_MANAGER?action=upload&path=/public_html&json=yes"
+        # Upload build.zip
+        curl -u "$DA_USERNAME:$DA_PASSWORD" -T build.zip "$DA_URL/CMD_FILE_MANAGER?action=upload&path=/domains/jedd.dev/public_html&json=yes"
         
-        # Extract with proper path
-        curl -u $DA_USERNAME:$DA_PASSWORD "$DA_URL/CMD_FILE_MANAGER?action=extract&path=/public_html&file=build.zip&overwrite=yes&json=yes"
+        # Extract the contents
+        curl -u "$DA_USERNAME:$DA_PASSWORD" "$DA_URL/CMD_FILE_MANAGER?action=extract&path=/domains/jedd.dev/public_html&file=build.zip&overwrite=yes&json=yes"
