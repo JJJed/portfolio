@@ -452,8 +452,8 @@ const Terminal = ({ experiencesData, skillsData, projectsData }) => {
         meeting: {
             description: 'Schedule a meeting',
             execute: () => {
-                window.open('https://fantastical.app/joda', '_blank');
-                return { output: ['Opening Fantastical...'] };
+                window.open('https://jedd.dev/meet', '_blank');
+                return { output: ['Opening calendar...'] };
             }
         },
 
