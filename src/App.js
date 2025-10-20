@@ -52,7 +52,7 @@ const App = () => {
 
             <footer className="bg-gray-900 py-6">
                 <div className="container mx-auto px-4 text-center text-gray-400">
-                    <p>© {new Date().getFullYear()} Joshua Davis. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} Joda Development LLC. All rights reserved.</p>
                     <p className="mt-2">Crafted with React, Tailwind CSS, and Framer Motion</p>
                 </div>
             </footer>
